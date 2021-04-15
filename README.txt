@@ -4,7 +4,7 @@
 
 运行要求：python 3, 安装了mido库即可，同时须在游戏内安装AnotherColorBlock这一模组
 
-使用的第三方库：medit_4的noteMsg和sequence，mido
+使用的第三方库：medit_4的noteMsg和sequence(Bilibili: medit_4);  mido(https://mido.readthedocs.io/en/latest/)
 
 文件夹结构：
 ..
