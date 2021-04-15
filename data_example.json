@@ -1,0 +1,99 @@
+{
+	//by zlc_3
+	//内置的particle_line生成器有circle,st,straight,parabola
+    "postion":[177, 30, -318],
+    "playEvents":{
+        "0":[
+        {
+            "tick": 0,
+            "data":{
+                "particle_line": "parabola",
+                "particle_point": "example1"
+            }
+        },
+        {
+            "tick": 1000,
+            "data":{
+                "particle_line": "circle",
+                "particle_point": "example:2"
+            }
+        }],
+
+        "1":[{
+                "tick": 0,
+                "data":{
+                    "particle_line": "circle2",
+                    "particle_point": "example:2"
+                }
+            },
+            {
+                "tick": 1000,
+                "data":"group_example"
+            }],
+
+        "2":[{
+                "tick": 0,
+                "data":"group_example"
+            },
+            {
+                "tick": 1030,
+                "data":"group_example"
+            }],
+        
+        "3":[],
+
+        "4":[]
+    },
+
+
+    "data_group":{
+        "group_example":{
+            "particle_line": "straight",
+            "particle_point": "example:2"
+        }
+    },
+
+    "mcfunction_group":{
+        "example1":{
+            "list":["example:1"],
+            "fpt":1
+        }
+    },
+
+    "particle_group":{
+        "straight":{
+            "name":"st",
+            "args":{
+                "particle_name":"endRod",
+                "accuary":0.3,
+                "color":[0,0,1]
+            }
+        },
+        "circle":{
+            "name":"circle",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[0,0,1]
+            }
+        },
+        "circle2":{
+            "name":"circle",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[1,0,1]
+            }
+        },
+        "parabola":{
+            "name":"parabola",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[1,0,1],
+                "high":0.5
+            }
+        }
+    }
+
+}
