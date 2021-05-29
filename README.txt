@@ -2,7 +2,7 @@
 
 开发者: zlc_3
 
-运行要求：python 3, 安装了mido库即可，同时须在游戏内安装AnotherColorBlock这一模组
+运行要求：python 3, 安装了mido库即可，同时须在游戏内安装AnotherColorBlock这一模组,游戏版本1.12.2
 
 使用的第三方库：medit_4的noteMsg和sequence(https://github.com/xuetaolu/python-in-minecraft) 已经在builder文件夹里了;  
                mido(https://mido.readthedocs.io/en/latest/) 需自行下载
