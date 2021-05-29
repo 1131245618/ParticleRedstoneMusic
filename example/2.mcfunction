@@ -106,4 +106,4 @@ particleex endRod ~0.5 ~ ~0.5 normal 0.2 0.5 0.9 1 240 0.05 0.2 0.05 0 0 0 1 120
 particleex endRod ~0.5 ~ ~0.5 normal 0.2 0.5 0.9 1 240 -0.05 0.2 0.05 0 0 0 1 120
 particleex endRod ~0.5 ~ ~0.5 normal 0.2 0.5 0.9 1 240 0.05 0.2 -0.05 0 0 0 1 120
 particleex endRod ~0.5 ~ ~0.5 normal 0.2 0.5 0.9 1 240 -0.05 0.2 -0.05 0 0 0 1 120
-summon minecraft:fireworks_rocket ~ ~ ~ {LifeTime:0,FireworksItem:{id:"minecraft:fireworks",Count:1b,tag:{Fireworks:{Explosions:[{Flicker:false,Trail:1,Type:4,Colors:[I;3394662],FadeColors:[I;3394662]}]}},Damage:0s}}
+#summon minecraft:fireworks_rocket ~ ~ ~ {LifeTime:0,FireworksItem:{id:"minecraft:fireworks",Count:1b,tag:{Fireworks:{Explosions:[{Flicker:false,Trail:1,Type:4,Colors:[I;3394662],FadeColors:[I;3394662]}]}},Damage:0s}}

@@ -37,6 +37,7 @@ class ParDataLists:
         self.data_group = {}
         self.pos = (0, 0, 0)
         self.particle_group = {}
+        self.block = {}
 
 
     def __iter__(self):
@@ -53,30 +54,43 @@ class ParDataLists:
     def getChanDataByTick(self, channel, tick):
         return self.dataDict[channel].getDataByTick(tick)
 
+    def getblock(self, channel):
+        return self.block.get(f"{channel}", "air 0")
+
     def load(self):
+        
         f = open(self.filePath, "r")
         js = json.loads(f.read())
-        self.pos = js["postion"]
+        self.pos = js["position"]
         self.data_group = js["data_group"]
         self.mcfunction_group = js["mcfunction_group"]
         self.particle_group = js["particle_group"]
+        self.block = js["block"]
+
         for key in self.data_group.keys():
             data = self.data_group[key]
+
             if data["particle_point"] in self.mcfunction_group.keys():
                 data['particle_point'] = self.mcfunction_group[data['particle_point']]
+
             data['particle_line'] = self.particle_group.get(data['particle_line'],{})
+
         for i in range(16):
             item = js["playEvents"].get(f"{i}", {})
+            
             for datas in item:
+
                 if type(datas['data']) == str:
                     datas['data'] = self.data_group.get(datas['data'], {})
+
                 if datas['data']['particle_point'] in self.mcfunction_group.keys():
                     datas['data']['particle_point'] = self.mcfunction_group[datas['data']['particle_point']]
+                    
                 if type(datas['data']['particle_line']) == str:
                     datas['data']['particle_line'] = self.particle_group.get(datas['data']['particle_line'],{})
 
-            
             self.dataDict[i] = ParDatas(item, i)
+
 
 
 if __name__ == "__main__":

@@ -1,21 +1,22 @@
 {
-	//by zlc_3
-	//内置的particle_line生成器有circle,st,straight,parabola
-    "postion":[177, 30, -318],
+
+    "position":[177, 30, -318],
     "playEvents":{
         "0":[
         {
             "tick": 0,
             "data":{
                 "particle_line": "parabola",
-                "particle_point": "example1"
+                "particle_point": "example1",
+                "pos": [0,0,0]
             }
         },
         {
             "tick": 1000,
             "data":{
                 "particle_line": "circle",
-                "particle_point": "example:2"
+                "particle_point": "example:2",
+                "pos": [0,0,0]
             }
         }],
 
@@ -23,7 +24,8 @@
                 "tick": 0,
                 "data":{
                     "particle_line": "circle2",
-                    "particle_point": "example:2"
+                    "particle_point": "example:2",
+                    "pos": [0,0,0]
                 }
             },
             {
@@ -48,8 +50,9 @@
 
     "data_group":{
         "group_example":{
-            "particle_line": "straight",
-            "particle_point": "example:2"
+            "particle_line": "stright",
+            "particle_point": "example:2",
+            "pos": [0,0,0]
         }
     },
 
@@ -85,12 +88,21 @@
                 "color":[1,0,1]
             }
         },
-        "parabola":{
+        "parabola101":{
             "name":"parabola",
             "args":{
                 "speed":0.5,
                 "accuary":0.3,
                 "color":[1,0,1],
+                "high":0.5
+            }
+        },
+        "parabola001":{
+            "name":"parabola",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[0,0.2,1],
                 "high":0.5
             }
         }

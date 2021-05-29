@@ -1,5 +1,6 @@
 import math
 from builder import util
+from builder.LineType import LineType
 
 sqrt = math.sqrt
 ceil = util.ceil
@@ -8,7 +9,7 @@ pyfuncDict = {}
 functype = {}
 
 
-def register(pyfunc,name=None,typ="normal"):
+def register(pyfunc,name=None,typ=LineType.NORMAL):
     if not name: name = pyfunc.__name__
     pyfuncDict[name] = pyfunc
     functype[name] = typ
@@ -20,16 +21,13 @@ def getfunc(name):
 def getfuncType(name):
     return functype.get(name)
 
-def register_cacl(name=None, typ="normal"):
+def register_cacl(name=None, typ=LineType.NORMAL):
     def regist(func):
         register(func, name, typ)
         return func
     return regist
 
 def register_normal(name=None):
-    '''
-    把一堆坐标转为指令
-    '''
     def regist(func):
 
         def decorator(x1, y1, z1, x2, y2, z2, ticks, particle_name, color, **kargs):
@@ -41,7 +39,7 @@ def register_normal(name=None):
             particles = ceil(particles, ticks)
             return particles
         decorator.__name__ = func.__name__
-        register(decorator,name,"normal")
+        register(decorator,name,LineType.NORMAL)
         return decorator
     return regist
 
@@ -57,29 +55,47 @@ def register_normalAdded(name=None):
             particles = ceil(particles, ticks)
             return particles, other
         decorator.__name__ = func.__name__
-        register(decorator,name,"added")
+        register(decorator,name,LineType.NORMAL_EXTRA)
         return decorator
     return regist
+
+
 
 
 def register_parEX(name=None):
     def regist(func):
 
-        def decorator(x1, y1, z1, x2, y2, z2, **kargs):
-            return func(x1, y1, z1, x2, y2, z2, **kargs)
+        def decorator(x1, y1, z1, x2, y2, z2, ticks, **kargs):
+            return func(x1, y1, z1, x2, y2, z2, ticks, **kargs)
         decorator.__name__ = func.__name__
-        register(decorator,name,"ex")
+        register(decorator,name,LineType.EXPRESSION)
         return decorator
     return regist
 
 def register_parEXAdded(name=None):
     def regist(func):
 
-        def decorator(x1, y1, z1, x2, y2, z2, added, **kargs):
-            cmd, other = func(x1, y1, z1, x2, y2, z2, added, **kargs)
+        def decorator(x1, y1, z1, x2, y2, z2, ticks, added, **kargs):
+            cmd, other = func(x1, y1, z1, x2, y2, z2, ticks, added, **kargs)
             return cmd, other
         decorator.__name__ = func.__name__
-        register(decorator,name,"exadded")
+        register(decorator,name,LineType.EXPRESSION_EXTRA)
+        return decorator
+    return regist
+
+def register_normalEX(name=None):
+    def regist(func):
+
+        def decorator(x1, y1, z1, x2, y2, z2, ticks, particle_name, color, **kargs):
+            pos = func(x1, y1, z1, x2, y2, z2, **kargs)
+            particles = []
+            for p in pos:
+                x, y, z = p
+                particles.append(f"particleex {particle_name} {x} {y} {z} normal 0 0 0 1 240 0 0 0 0 0 0 1 200")
+            particles = ceil(particles, ticks)
+            return particles
+        decorator.__name__ = func.__name__
+        register(decorator,name,LineType.NORMAL)
         return decorator
     return regist
 
