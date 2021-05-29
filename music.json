@@ -1,0 +1,107 @@
+{
+
+    "position":[177, 30, -318],
+    "playEvents":{
+        "1":[{
+            "tick": 0,
+            "data":{
+                "particle_line": "parabola101",
+                "particle_point": "circle1",
+                "pos": [0,0,0]
+            }
+        },
+        {
+            "tick": 1,
+            "data":{
+                "particle_line": "circle",
+                "particle_point": "circle1",
+                "pos": [0,0,0]
+            }
+        }],
+
+        "0":[{
+                "tick": 0,
+                "data":{
+                    "particle_line": "spiral",
+                    "particle_point": "point:1",
+                    "pos": [0,5,0]
+                }
+            }]
+        
+
+    },
+
+
+    "data_group":{
+        
+    },
+
+    "mcfunction_group":{
+        "circle1":{
+            "list":["point:circle1"],
+            "fpt":1
+        }
+    },
+
+    "particle_group":{
+        "straight":{
+            "name":"st",
+            "args":{
+                "particle_name":"endRod",
+                "accuary":0.3,
+                "color":[0,0,1]
+            }
+        },
+        "circle":{
+            "name":"circle",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[0.12,0.743,0.875]
+            }
+        },
+        "circle2":{
+            "name":"circle",
+            "args":{
+                "speed":0.5,
+                "accuary":0.1,
+                "color":[1,0,1]
+            }
+        },
+        "parabola101":{
+            "name":"parabola",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[0.86,0.12,0.91],
+                "high":0.5
+            }
+        },
+        "parabola001":{
+            "name":"parabola",
+            "args":{
+                "speed":0.5,
+                "accuary":0.3,
+                "color":[0,0.2,1],
+                "high":0.5
+            }
+        },
+        "spiral":{
+            "name":"spiral",
+            "args":{
+                "color":[0.56,0.22,0.91],
+                "omega":0.2,
+                "n":15,
+                "speed":0.5,
+                "accuary":0.1
+            }
+        }
+    },
+
+    "block":{
+        "0":"air 0",
+        "1":"air 0",
+        "2":"air 0"
+    }
+    
+}
