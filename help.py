@@ -4,7 +4,7 @@ import added
 import sys,os
 
 f = open("help.txt","w")
-tmp = sys.stdout
+
 sys.stdout = f
 
 print("============================")
@@ -15,8 +15,6 @@ for pyFunc in builder.particleLine.pyfuncDict.keys():
     print("\n---------------------------\n")
 
 f.close()
-
-sys.stdout= tmp
 
 os.system("notepad help.txt")
 
