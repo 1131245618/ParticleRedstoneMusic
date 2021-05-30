@@ -31,6 +31,7 @@ def register_normal(name=None):
     def regist(func):
 
         def decorator(x1, y1, z1, x2, y2, z2, ticks, particle_name, color, **kargs):
+
             pos = func(x1, y1, z1, x2, y2, z2, **kargs)
             particles = []
             for p in pos:
@@ -43,10 +44,11 @@ def register_normal(name=None):
         return decorator
     return regist
 
-def register_normalAdded(name=None):
+def register_normalExtra(name=None):
     def regist(func):
 
         def decorator(x1, y1, z1, x2, y2, z2, ticks, added, particle_name, **kargs):
+
             pos, other = func(x1, y1, z1, x2, y2, z2, added, **kargs)
             particles = []
             for p in pos:
@@ -60,33 +62,23 @@ def register_normalAdded(name=None):
     return regist
 
 
-
-
 def register_parEX(name=None):
     def regist(func):
-
-        def decorator(x1, y1, z1, x2, y2, z2, ticks, **kargs):
-            return func(x1, y1, z1, x2, y2, z2, ticks, **kargs)
-        decorator.__name__ = func.__name__
-        register(decorator,name,LineType.EXPRESSION)
-        return decorator
+        register(func,name,LineType.EXPRESSION)
+        return func
     return regist
 
-def register_parEXAdded(name=None):
+def register_parEXExtra(name=None):
     def regist(func):
-
-        def decorator(x1, y1, z1, x2, y2, z2, ticks, added, **kargs):
-            cmd, other = func(x1, y1, z1, x2, y2, z2, ticks, added, **kargs)
-            return cmd, other
-        decorator.__name__ = func.__name__
-        register(decorator,name,LineType.EXPRESSION_EXTRA)
-        return decorator
+        register(func,name,LineType.EXPRESSION_EXTRA)
+        return func
     return regist
 
 def register_normalEX(name=None):
     def regist(func):
 
-        def decorator(x1, y1, z1, x2, y2, z2, ticks, particle_name, color, **kargs):
+        def decorator(x1, y1, z1, x2, y2, z2, ticks, particle_name, **kargs):
+
             pos = func(x1, y1, z1, x2, y2, z2, **kargs)
             particles = []
             for p in pos:

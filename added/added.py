@@ -1,4 +1,4 @@
-from builder.particleLine import register_parEX, register_cacl, register_parEXAdded
+from builder.particleLine import register_parEX, register_cacl, register_parEXExtra
 import math
 from math import sqrt, sin, cos, atan
 from builder.util import ceil, toPolar
@@ -8,6 +8,7 @@ PI = math.pi
 
 @register_parEX()
 def parabola(x1, y1, z1, x2, y2, z2, ticks, color, high, accuary=0.2,**kargs):
+
     speed = (x2 -x1) / ticks
     T = round((x2-x1) / speed)
     vx, vz = (x2-x1)/T, (z2-z1)/T
@@ -20,6 +21,7 @@ def parabola(x1, y1, z1, x2, y2, z2, ticks, color, high, accuary=0.2,**kargs):
 
 @register_parEX()
 def straightEx(x1, y1, z1, x2, y2, z2, ticks, color=(0,0,0), accuary=0.2, **kargs):
+
     speed = (x2 -x1) / ticks
     r, g, b = color
     T = (x2 - x1) // speed
@@ -40,6 +42,7 @@ def straightEx(x1, y1, z1, x2, y2, z2, ticks, color=(0,0,0), accuary=0.2, **karg
 
 @register_cacl()
 def spiralParabola(x1, y1, z1, x2, y2, z2, ticks, color, omega, n, r, accuary=0.1,**kargs):
+
     T = ticks
     S = sqrt((x1-x2)**2+(y1-y2)**2+(z1-z2)**2)
     H = n*S
@@ -74,6 +77,7 @@ def spiralParabola(x1, y1, z1, x2, y2, z2, ticks, color, omega, n, r, accuary=0.
 
 @register_cacl(typ=LineType.EXPRESSION)
 def spiral(x1,y1,z1,x2,y2,z2, ticks, color, omega, n = 12, accuary=0.2, **kargs):
+
     speed = (x2 -x1) / ticks
     if abs((x2-x1)/((z2-z1)+0.001)) <= 1/4:
         return parabola(x1, y1, z1, x2, y1, z2, ticks, color=color, high=0.25, speed=0.5, accuary=0.1)
@@ -92,8 +96,9 @@ def spiral(x1,y1,z1,x2,y2,z2, ticks, color, omega, n = 12, accuary=0.2, **kargs)
     return cmd
 
 
-@register_parEXAdded()
+@register_parEXExtra()
 def circle(x1,y1,z1,x2,y2,z2, ticks, vector, color, accuary=0.1, **keyargs):
+
     speed = (x2 -x1) / ticks
     if not vector:
         vector = (1,0)

@@ -1,0 +1,67 @@
+============================
+Defined particle line's name:  parabola
+
+LineType.EXPRESSION
+Help on function parabola in module added.added:
+
+parabola(x1, y1, z1, x2, y2, z2, ticks, color, high, accuary=0.2, **kargs)
+
+None
+
+---------------------------
+
+Defined particle line's name:  straightEx
+
+LineType.EXPRESSION
+Help on function straightEx in module added.added:
+
+straightEx(x1, y1, z1, x2, y2, z2, ticks, color=(0, 0, 0), accuary=0.2, **kargs)
+
+None
+
+---------------------------
+
+Defined particle line's name:  spiralParabola
+
+LineType.NORMAL
+Help on function spiralParabola in module added.added:
+
+spiralParabola(x1, y1, z1, x2, y2, z2, ticks, color, omega, n, r, accuary=0.1, **kargs)
+
+None
+
+---------------------------
+
+Defined particle line's name:  spiral
+
+LineType.EXPRESSION
+Help on function spiral in module added.added:
+
+spiral(x1, y1, z1, x2, y2, z2, ticks, color, omega, n=12, accuary=0.2, **kargs)
+
+None
+
+---------------------------
+
+Defined particle line's name:  circle
+
+LineType.EXPRESSION_EXTRA
+Help on function circle in module added.added:
+
+circle(x1, y1, z1, x2, y2, z2, ticks, vector, color, accuary=0.1, **keyargs)
+
+None
+
+---------------------------
+
+Defined particle line's name:  straight
+
+LineType.NORMAL
+Help on function straight in module added.added:
+
+straight(x1, y1, z1, x2, y2, z2, ticks, dxyz, amount, velocity, accuary=0.1, **kargs)
+
+None
+
+---------------------------
+

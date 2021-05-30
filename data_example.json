@@ -1,21 +1,16 @@
 {
+    "basic":{
+        "position":[177, 30, -318],
+        "tickrate":45
+    },
 
-    "position":[177, 30, -318],
     "playEvents":{
         "0":[
         {
             "tick": 0,
             "data":{
-                "particle_line": "parabola",
+                "particle_line": "parabola101",
                 "particle_point": "example1",
-                "pos": [0,0,0]
-            }
-        },
-        {
-            "tick": 1000,
-            "data":{
-                "particle_line": "circle",
-                "particle_point": "example:2",
                 "pos": [0,0,0]
             }
         }],
@@ -24,41 +19,29 @@
                 "tick": 0,
                 "data":{
                     "particle_line": "circle2",
-                    "particle_point": "example:2",
+                    "particle_point": "point:block2",
                     "pos": [0,0,0]
                 }
             },
             {
                 "tick": 1000,
                 "data":"group_example"
-            }],
+            }]
 
-        "2":[{
-                "tick": 0,
-                "data":"group_example"
-            },
-            {
-                "tick": 1030,
-                "data":"group_example"
-            }],
-        
-        "3":[],
-
-        "4":[]
     },
 
 
     "data_group":{
         "group_example":{
-            "particle_line": "stright",
-            "particle_point": "example:2",
+            "particle_line": "straight",
+            "particle_point": "point:circle1",
             "pos": [0,0,0]
         }
     },
 
     "mcfunction_group":{
         "example1":{
-            "list":["example:1"],
+            "list":["point:1"],
             "fpt":1
         }
     },
@@ -106,6 +89,8 @@
                 "high":0.5
             }
         }
-    }
+    },
+    "block":{
 
+    }
 }

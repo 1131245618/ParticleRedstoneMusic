@@ -13,14 +13,16 @@ class parMsgList(MsgList):
         for i in range(16):
             self.parMsgDict[i] = {}
         self.particleSpeed = 0.5
-        self.seq = sequence2.Seq2()
+        self.seq = None
         self.length = 0
         self.data = None
 
-    def load(self, file, data_file_path, tickrate=20.0, makeLength=True, makePitch=True):
-        super().load(file, tickrate, makeLength, makePitch)
+    def load(self, file, data_file_path, outputFolder, tickrate=20.0, makeLength=True, makePitch=True):
+
+        self.seq = sequence2.Seq2(outputFolder)
         self.data = ParDatas.ParDataLists(data_file_path)
         self.data.load()
+        super().load(file, self.data.tickrate, makeLength, makePitch)
 
         for item in self:
             rsTick = item.tick

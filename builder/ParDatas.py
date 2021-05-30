@@ -3,11 +3,18 @@ from bisect import bisect_left
 
 class ParDatas:
 
-    def __init__(self, datas, channel):
+    def __init__(self, datas, channel, tickrate):
         self.datas = {}
         self.channel = channel
         for i in datas:
-            self.datas[i['tick']] = i['data']
+            tick = 0
+            if type(i['tick']) == float:
+                tick = round(i['tick']*tickrate)
+            elif type(i['tick']) == int:
+                tick = i["tick"]
+            else:
+                raise Exception(f"tick must be float or int, not {type(i['tick'])}")
+            self.datas[tick] = i['data']
         self.__tickList = list(self.datas.keys())
         self.__tickList.sort()
     
@@ -61,7 +68,9 @@ class ParDataLists:
         
         f = open(self.filePath, "r")
         js = json.loads(f.read())
-        self.pos = js["position"]
+
+        self.pos = js["basic"]["position"]
+        self.tickrate = int(js["basic"]["tickrate"])
         self.data_group = js["data_group"]
         self.mcfunction_group = js["mcfunction_group"]
         self.particle_group = js["particle_group"]
@@ -85,11 +94,11 @@ class ParDataLists:
 
                 if datas['data']['particle_point'] in self.mcfunction_group.keys():
                     datas['data']['particle_point'] = self.mcfunction_group[datas['data']['particle_point']]
-                    
+
                 if type(datas['data']['particle_line']) == str:
                     datas['data']['particle_line'] = self.particle_group.get(datas['data']['particle_line'],{})
 
-            self.dataDict[i] = ParDatas(item, i)
+            self.dataDict[i] = ParDatas(item, i, self.tickrate)
 
 
 
