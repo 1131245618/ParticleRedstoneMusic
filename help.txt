@@ -3,8 +3,8 @@
 Defined Particle line's name:  parabola
 
 LineType.EXPRESSION
-<function parabola at 0x000001D577C90790>
-argspec: (x1, y1, z1, x2, y2, z2, ticks, color, high, accuary=0.2, **kargs)
+<function parabola at 0x000002207A581700>
+argspec: (x1, y1, z1, x2, y2, z2, ticks, color, high, accuracy=0.2, **kargs)
 document of function:
     
     抛物线，参数high为高度与两点距离的比值
@@ -15,8 +15,8 @@ document of function:
 Defined Particle line's name:  straightEx
 
 LineType.EXPRESSION
-<function straightEx at 0x000001D577C90820>
-argspec: (x1, y1, z1, x2, y2, z2, ticks, color=(0, 0, 0), accuary=0.2, **kargs)
+<function straightEx at 0x000002207A581790>
+argspec: (x1, y1, z1, x2, y2, z2, ticks, color=(0, 0, 0), accuracy=0.2, **kargs)
 document of function:
     
     普通的直线(=・ω・=)
@@ -27,11 +27,11 @@ document of function:
 Defined Particle line's name:  spiralParabola
 
 LineType.NORMAL
-<function spiralParabola at 0x000001D577C908B0>
-argspec: (x1, y1, z1, x2, y2, z2, ticks, omega, n, r, accuary=0.1, **kargs)
+<function spiralParabola at 0x000002207A581820>
+argspec: (x1, y1, z1, x2, y2, z2, ticks, omega, n, r, accuracy=0.1, **kargs)
 document of function:
     
-    螺旋抛物线，n为高度与两点距离的比值，omega为加速度，r为半径(粒子扩散的速度)
+    螺旋抛物线，n为高度与两点距离的比值，omega为角速度，r为半径(粒子扩散的速度)
     
 
 ---------------------------
@@ -39,11 +39,11 @@ document of function:
 Defined Particle line's name:  spiral
 
 LineType.EXPRESSION
-<function spiral at 0x000001D577C90940>
-argspec: (x1, y1, z1, x2, y2, z2, ticks, color, omega, n=12, accuary=0.2, **kargs)
+<function spiral at 0x000002207A5818B0>
+argspec: (x1, y1, z1, x2, y2, z2, ticks, color, omega, n=12, accuracy=0.2, **kargs)
 document of function:
     
-    两头小中间大的螺旋线，n为两点距离与最大半径的比值
+    两头小中间大的螺旋线，omega为角速度，n为两点距离与最大半径的比值
     
 
 ---------------------------
@@ -54,8 +54,8 @@ LineType.EXPRESSION_EXTRA
 
 ==The 8th arg is an added value, ignore it!==
 
-<function circle at 0x000001D577C909D0>
-argspec: (x1, y1, z1, x2, y2, z2, ticks, vector, color, accuary=0.1, **keyargs)
+<function circle at 0x000002207A581940>
+argspec: (x1, y1, z1, x2, y2, z2, ticks, vector, color, accuracy=0.1, **keyargs)
 document of function:
     
     圆
@@ -66,11 +66,11 @@ document of function:
 Defined Particle line's name:  straight
 
 LineType.NORMAL
-<function straight at 0x000001D577C90A60>
-argspec: (x1, y1, z1, x2, y2, z2, ticks, dxyz, amount, velocity, accuary=0.3, **kargs)
+<function straight at 0x000002207A5819D0>
+argspec: (x1, y1, z1, x2, y2, z2, ticks, dxyz, amount, velocity, accuracy=0.3, **kargs)
 document of function:
     
-    基于原版的直线，dxyz为粒子范围，是个三元素列表。amount为粒子数量，velocity为粒子扩散速度，精度accuary可以设大一点。
+    基于原版的直线，dxyz为粒子范围，是个三元素列表。amount为粒子数量，velocity为粒子扩散速度，精度accuracy可以设大一点。
     
 
 ---------------------------

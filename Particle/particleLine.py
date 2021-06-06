@@ -84,7 +84,7 @@ def register_normalEX(name=None):
 
 
 if __name__ == "__main__":
-    a = {"particle_name":"endRod", "accuary":0.1, "speed":0.5, "color":tuple([0,0,1])}
+    a = {"particle_name":"endRod", "accuracy":0.1, "speed":0.5, "color":tuple([0,0,1])}
     #cmdline = getfunc("st")(0,1,1,2,2,2, ticks= 2,**a)
     #print(cmdline)
     #print(pyfuncDict)
