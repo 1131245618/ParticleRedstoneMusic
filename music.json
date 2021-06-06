@@ -1,93 +1,52 @@
 {
-
-    "position":[177, 30, -318],
-    "playEvents":{
-        "1":[{
-            "tick": 0,
-            "data":{
-                "particle_line": "parabola101",
-                "particle_point": "circle1",
-                "pos": [0,0,0]
-            }
-        },
-        {
-            "tick": 1,
-            "data":{
-                "particle_line": "circle",
-                "particle_point": "circle1",
-                "pos": [0,0,0]
-            }
-        }],
-
-        "0":[{
-                "tick": 0,
-                "data":{
-                    "particle_line": "spiral",
-                    "particle_point": "point:1",
-                    "pos": [0,5,0]
-                }
-            }]
-        
+    "basic":{
+        "position":[177, 30, -318],
+        "tickrate":45
 
     },
-
 
     "data_group":{
-        
-    },
 
-    "mcfunction_group":{
-        "circle1":{
-            "list":["point:circle1"],
-            "fpt":1
+        "group_example":{
+            "particle_line": "straight",
+            "particle_point": "point:circle1",
+            "pos": [0,0,0]
         }
     },
 
     "particle_group":{
-        "straight":{
-            "name":"st",
+
+        "spiralParabola":{
+
+            "pyFunction":"spiralParabola", 
+
             "args":{
-                "particle_name":"endRod",
-                "accuary":0.3,
-                "color":[0,0,1]
+                "omega":2,
+                "n":0.5,
+                "accuary":0.05,
+                "r":0.6
             }
         },
         "circle":{
-            "name":"circle",
-            "args":{
-                "speed":0.5,
-                "accuary":0.3,
-                "color":[0.12,0.743,0.875]
-            }
-        },
-        "circle2":{
-            "name":"circle",
+            "pyFunction":"circle",
+
             "args":{
                 "speed":0.5,
                 "accuary":0.1,
-                "color":[1,0,1]
+                "color":[0,0,1]
             }
         },
-        "parabola101":{
-            "name":"parabola",
+        "parabola":{
+            "pyFunction":"parabola",
             "args":{
                 "speed":0.5,
                 "accuary":0.3,
-                "color":[0.86,0.12,0.91],
-                "high":0.5
-            }
-        },
-        "parabola001":{
-            "name":"parabola",
-            "args":{
-                "speed":0.5,
-                "accuary":0.3,
-                "color":[0,0.2,1],
+                "color":[1,0,1],
                 "high":0.5
             }
         },
         "spiral":{
-            "name":"spiral",
+            "pyFunction":"spiral",
             "args":{
                 "color":[0.56,0.22,0.91],
                 "omega":0.2,
@@ -98,10 +57,74 @@
         }
     },
 
-    "block":{
-        "0":"air 0",
-        "1":"air 0",
-        "2":"air 0"
-    }
+    "playEvents":{
+
+        "0":[{
+
+                "tick": 0,
+
+                "data":{
+
+                    "particle_line": "spiral",
+
+                    "particle_point": "point:1",
+
+                    "pos": [0,10,0]
+
+                }
+        }],
+
+        "1":[{
+            "tick": 0,
+            "data":{
+                "particle_line": "parabola",
+                "particle_point": "example1",
+                "pos": [0,0,0]
+            }
+        },
+        {
+            "tick": 100,
+            "data":{
+                "particle_line": "circle",
+                "particle_point": "example1",
+                "pos": [0,0,0]
+            }
+        }],
+
+
+        "2":[{
+        		"tick": 0,
+        		"data":{
+        			"particle_line": "spiralParabola",
+        			"particle_point": "point:1",
+        			"pos": [0, 0, 0]
+        		}
+        }]
+        
+
+    },
+
+
     
+    "mcfunction_group":{
+        "example1":{
+            "list":["point:1","point:circle1","point:block1"],
+
+            "times":1,
+
+            "tickspertime":1,
+
+            "random":true
+
+        }
+    },
+
+
+    "block":{
+
+        "0":"concrete 0",
+        "1":"concrete 1",
+        "2":"concrete 2"
+
+    }
 }

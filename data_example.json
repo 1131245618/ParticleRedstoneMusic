@@ -1,37 +1,18 @@
 {
+    //Comments are not permitted in JSON
+    //JSON文件中不可出现注释，这是错误示范
     "basic":{
-        "position":[177, 30, -318],
+        "position":[177, 30, -318],//基准点坐标，为第0tick音高为0的音符所对应的方块坐标
         "tickrate":45
+        /*播放时每秒的游戏刻，游戏刻是Minecraft的最小时间单位。
+        每秒游戏刻速度可利用tickratechanger mod 调整，速度越大音符的精度越准，但需要更高的电脑配置。
+        如果要尽量精确又不想太快，建议把tickrate设为乐曲bpm的因数
+        */
+        //"forward":"east" 将来可能会添加这个参数来设置前进方向，但目前只能是东方
     },
-
-    "playEvents":{
-        "0":[
-        {
-            "tick": 0,
-            "data":{
-                "particle_line": "parabola101",
-                "particle_point": "example1",
-                "pos": [0,0,0]
-            }
-        }],
-
-        "1":[{
-                "tick": 0,
-                "data":{
-                    "particle_line": "circle2",
-                    "particle_point": "point:block2",
-                    "pos": [0,0,0]
-                }
-            },
-            {
-                "tick": 1000,
-                "data":"group_example"
-            }]
-
-    },
-
 
     "data_group":{
+        //可被引用的数据组
         "group_example":{
             "particle_line": "straight",
             "particle_point": "point:circle1",
@@ -39,40 +20,38 @@
         }
     },
 
-    "mcfunction_group":{
-        "example1":{
-            "list":["point:1"],
-            "fpt":1
-        }
-    },
-
     "particle_group":{
-        "straight":{
-            "name":"st",
+        //可被引用的粒子线样式组
+        "spiralParabola":{
+            //pyFunction是python粒子线生成函数，详情请运行help.py
+            "pyFunction":"spiralParabola", //这里填的是函数的*注册名*(help.txt所提示的可用名)，而非函数名
             "args":{
-                "particle_name":"endRod",
-                "accuary":0.3,
-                "color":[0,0,1]
+                //用户自定义的参数，参数取决于生成器的函数
+                //在help.txt中，argspec: (x1, y1, z1, x2, y2, z2, ticks, omega, n, r, accuary=0.1, **kargs)
+                //其中第1至第7(x1...ticks)的参数由生成过程中系统自动提供，**kargs是用来收集多余参数的
+                //注意accuary=0.1，这是说明accuary默认值为0.1,可以不填，自动取默认值
+                //还是建议在使用一个生成函数前读一下它的源代码，了解各参数类型及作用
+                "omega":2,
+                "n":0.5,
+                "accuary":0.05,
+                "r":0.6
             }
         },
         "circle":{
-            "name":"circle",
+            "PyFunction":"circle",
+            //函数circle是个特别的函数，它的类型为LineType.EXPRESSION_EXTRA
+            //argspec: (x1, y1, z1, x2, y2, z2, ticks, vector, color, accuary=0.1, **keyargs)
+            //除了第1至第7个参数，第8个参数vector是个附加值，由系统自行提供，不用用户填写
+            //类型为LineType.EXPRESSION_EXTRA和LineType.NORMAL_EXTRA的函数的第8个参数都是附加值
             "args":{
-                "speed":0.5,
-                "accuary":0.3,
+                "speed":0.5,//这里的speed参数是的多余的值，但它被**keyargs收集了，没有引发报错。
+                //如果函数的参数列表末尾没有两个星星打头的参数，多余的值无法被忽略，将引发报错。
+                "accuary":0.1,
                 "color":[0,0,1]
             }
         },
-        "circle2":{
-            "name":"circle",
-            "args":{
-                "speed":0.5,
-                "accuary":0.3,
-                "color":[1,0,1]
-            }
-        },
-        "parabola101":{
-            "name":"parabola",
+        "parabola":{
+            "PyFunction":"parabola",
             "args":{
                 "speed":0.5,
                 "accuary":0.3,
@@ -80,17 +59,92 @@
                 "high":0.5
             }
         },
-        "parabola001":{
-            "name":"parabola",
+        "spiral":{
+            "PyFunction":"spiral",
             "args":{
+                "color":[0.56,0.22,0.91],
+                "omega":0.2,
+                "n":15,
                 "speed":0.5,
-                "accuary":0.3,
-                "color":[0,0.2,1],
-                "high":0.5
+                "accuary":0.1
             }
         }
     },
+
+    "playEvents":{
+        //最主要的部分：粒子事件
+        "0":[{
+        //表示是第0轨道的粒子事件
+                "tick": 0,
+                //事件发生的时间，当填入整数时对应tick数，当填入浮点数时为秒数
+                //如 "tick":114 表示该事件在第114tick发生，"tick":114.0 表示在114.0秒时发生
+                "data":{
+                //事件的动作
+                    "particle_line": "spiral",
+                    //将粒子线的样式设为"spiral",这里是引用了particle_group里的一个样式
+                    "particle_point": "point:1",
+                    //音符被播放时，在该音符对应的方块处执行的mcfunction,这里设为point:1
+                    //当然，也可以引用mcfunction_group中的mcfunction组
+                    "pos": [0,10,0]
+                    //将音轨在y轴正方向移动10格
+                }
+        }],
+
+        "1":[{
+            "tick": 0,
+            "data":{
+                "particle_line": "parabola",
+                "particle_point": "example1",
+                "pos": [0,0,0]
+            }
+        },
+        {
+            "tick": 100,
+            "data":{
+                "particle_line": "circle",
+                "particle_point": "example1",
+                "pos": [0,0,0]
+            }
+        }],
+
+
+        "2":[{
+        		"tick": 0,
+        		"data":{
+        			"particle_line": "spiralParabola",
+        			"particle_point": "point:1",
+        			"pos": [0, 0, 0]
+        		}
+        }]
+        
+
+    },
+
+
+    
+    "mcfunction_group":{
+        "example1":{
+            "list":["point:1","point:circle1","point:block1"],
+            //用到的mcfunction
+            "times":1,
+            //执行的次数，一次执行一个函数文件
+            "tickspertime":1,
+            //每次持续的ticks
+            "random":true
+            //是否随机，如为true每次将随机执行一个，如为false将顺序依次一个一个执行
+        }
+    },
+
+
     "block":{
+
+        "0":"concrete 0",
+        //第0轨道播放时，在音符对应的坐标处放置的方块
+        //我一般是先把方块生成好，再把存档区块文件备份下来，然后把方块设为空气，再生成一遍，用于正式播放
+        //默认为"air 0"
+        //如果什么方块都不想放，随便填个不存在的方块名就好了
+        "1":"concrete 1",
+        "2":"concrete 2"
 
     }
 }

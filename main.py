@@ -1,6 +1,5 @@
-from builder import parMsg
+from Particle import parMsg
 import configparser
-from added import added
 
 config = configparser.ConfigParser()
 config.read(r"./config.cfg", encoding="utf8")
@@ -15,5 +14,4 @@ _msgDict.buildNotes()
 _msgDict.buildParticle()
 _msgDict.buildBlocks()
 _msgDict.buildPointPar()
-_msgDict.seq.makeCmd(log=True,loopCmd='tp @p ~0.5 ~ ~')
-
+_msgDict.buildMcFunction(nonEmpty=False, log=True, loopCmd='tp @p ~0.5 ~ ~')
